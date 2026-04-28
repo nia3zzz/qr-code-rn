@@ -4,6 +4,7 @@ import { AppState, Linking, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Overlay from "./Overlay";
 
+
 const index = () => {
   const qrLock = useRef(false);
   const appState = useRef(AppState.currentState);

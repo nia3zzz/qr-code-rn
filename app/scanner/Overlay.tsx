@@ -1,33 +1,16 @@
-import { Canvas, DiffRect, rect, rrect } from "@shopify/react-native-skia";
-import { Dimensions, Platform, StyleSheet } from "react-native";
+// ✅ Works in Expo Go
+import { View, StyleSheet } from "react-native";
 
-const { width, height } = Dimensions.get("window");
-
-const innerDimensions = 300;
-
-const outer = rrect(rect(0, 0, width, height), 0, 0);
-
-const inner = rrect(
-  rect(
-    width / 2 - innerDimensions / 2,
-    height / 2 - innerDimensions / 2,
-    innerDimensions,
-    innerDimensions,
-  ),
-  50,
-  50,
+const Overlay = () => (
+  <View style={StyleSheet.absoluteFillObject}>
+    <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }} />
+    <View style={{ flexDirection: "row", height: 250 }}>
+      <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }} />
+      <View style={{ width: 250 }} />
+      <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }} />
+    </View>
+    <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }} />
+  </View>
 );
-
-const Overlay = () => {
-  return (
-    <Canvas
-      style={
-        Platform.OS === "android" ? { flex: 1 } : StyleSheet.absoluteFillObject
-      }
-    >
-      <DiffRect inner={inner} outer={outer} color="black" opacity={0.5} />
-    </Canvas>
-  );
-};
 
 export default Overlay;
