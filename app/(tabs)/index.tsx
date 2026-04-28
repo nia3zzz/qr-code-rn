@@ -1,4 +1,5 @@
 import { useCameraPermissions } from "expo-camera";
+import { Link } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,15 +18,12 @@ const Index = () => {
           disabled={isPermissionGranted}
         >
           <Text style={styles.button}>Request Permission</Text>
-        </TouchableOpacity>{" "}
-        <TouchableOpacity
-          onPress={() => {
-            alert("Scanning QR Code");
-          }}
-          disabled={!isPermissionGranted}
-        >
-          <Text style={styles.button}>Scan QR Code</Text>
         </TouchableOpacity>
+        <Link href="/scanner" asChild>
+          <TouchableOpacity disabled={!isPermissionGranted}>
+            <Text style={styles.button}>Scan QR Code</Text>
+          </TouchableOpacity>
+        </Link>
       </View>
     </SafeAreaView>
   );
@@ -34,7 +32,7 @@ const Index = () => {
 const styles = {
   container: {
     flex: 1,
-    alighnItems: "center",
+    alignItems: "center",
     justifyContent: "space-around",
     paddingVertical: 80,
   },
@@ -45,8 +43,8 @@ const styles = {
   button: {
     color: "blue",
     fontSize: 20,
-    textAlign: "center" as const,
+    textAlign: "center",
   },
-} as const;
+};
 
 export default Index;

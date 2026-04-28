@@ -5,7 +5,7 @@ export default function RootLayout() {
   return (
     <>
       <Slot />
-      <StatusBar style="auto" animated />
+      <StatusBar style="dark" />
     </>
   );
 }
