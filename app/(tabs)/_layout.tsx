@@ -4,7 +4,16 @@ import { Image } from "react-native";
 
 const TabLayout = () => {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "blue", headerShown: false }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "blue",
+        headerShown: false,
+        tabBarStyle: {
+          height: 60,
+          backgroundColor: "#f7f7f7",
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
