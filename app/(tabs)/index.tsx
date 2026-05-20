@@ -10,40 +10,65 @@ const Index = () => {
   const isPermissionGranted = Boolean(permission?.granted);
 
   return (
-    <SafeAreaView>
-      <Text style={styles.title}>QR Code Scanner</Text>
-      <View style={{ gap: 20 }}>
-        <TouchableOpacity
-          onPress={requestPermission}
-          disabled={isPermissionGranted}
-        >
-          <Text style={styles.button}>Request Permission</Text>
-        </TouchableOpacity>
-        <Link href="/scanner" asChild>
-          <TouchableOpacity disabled={!isPermissionGranted}>
-            <Text style={styles.button}>Scan QR Code</Text>
+    <SafeAreaView style={styles.safe_area}>
+      <View style={styles.top_container}>
+        <Text style={styles.title}>Scan a QR Code</Text>
+        <Text>Hold camera to a QR Code</Text>
+      </View>
+      <View style={styles.mid_funcs}>
+        {!isPermissionGranted && (
+          <TouchableOpacity style={styles.button} onPress={requestPermission}>
+            <Text style={styles.buttonText}>Request Permission</Text>
           </TouchableOpacity>
-        </Link>
+        )}
+        {isPermissionGranted && (
+          <Link href="/scanner" asChild>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Scan QR Code</Text>
+            </TouchableOpacity>
+          </Link>
+        )}
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = {
-  container: {
+  safe_area: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "space-around",
-    paddingVertical: 80,
+  },
+  top_container: {
+    margin: 20,
   },
   title: {
     color: "black",
-    fontSize: 20,
+    fontWeight: 500,
+    fontSize: 32,
+    fontFamily: "Inter-Regular",
+  },
+  mid_funcs: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
-    color: "blue",
-    fontSize: 20,
-    textAlign: "center",
+    width: 260,
+    backgroundColor: "#2563eb",
+    paddingVertical: 14,
+    borderRadius: 28,
+    marginTop: 18,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "700",
   },
 };
 
